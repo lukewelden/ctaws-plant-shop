@@ -15,8 +15,8 @@ echo "mysql-apt-config mysql-apt-config/select-tools select Enabled" | debconf-s
 echo "mysql-apt-config mysql-apt-config/unsupported-platform select ubuntu bionic" | debconf-set-selections
 echo "mysql-apt-config/enable-repo select mysql-5.7-dmr" | debconf-set-selections
 
-wget https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb
-dpkg --install mysql-apt-config_0.8.22-1_all.deb
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.30-1_all.deb
+dpkg --install mysql-apt-config_0.8.30-1_all.deb
 
 apt update
 apt install -y --allow-downgrades -f mysql-client=5.7* mysql-community-server=5.7* mysql-server=5.7*
@@ -47,10 +47,8 @@ grant select on plantshop.items to plantshop;
 EOF
 
 # API
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-apt update
-apt install -y nodejs=18.3.0-deb-1nodesource1
-apt-mark hold nodejs=18.3.0-deb-1nodesource1
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - &&\
+sudo apt-get install -y nodejs
 
 cd /opt
 rm -rf ctaws-plant-shop
